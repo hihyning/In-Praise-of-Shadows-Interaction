@@ -1,0 +1,219 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}  
+
+body {
+    cursor: none; /* Hide the default cursor */
+}
+  
+.fader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    visibility: hidden; /* Change to hidden initially */
+    transition: opacity 0.5s linear, visibility 0s linear 0.5s; /* Add visibility transition */
+    z-index: -1; /* Keep it below clickable elements initially */
+}
+
+.fade-in {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s linear;
+    z-index: 100;
+}
+
+.left-toggled {
+    background: linear-gradient(180deg, #000000, lightyellow); /* Adjust the angle as needed */
+}
+
+.righ-toggled {
+    background: linear-gradient(180deg, #ffffe0, #000000); /* Adjust the angle as needed */
+}
+
+#cursorCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Allow clicks through the canvas */
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000; /* Ensure it's above the content but below interactive elements if needed */
+}
+
+.trail {
+    pointer-events: none;
+    position: absolute;
+    border-radius: 50%;
+    width: 1rem; 
+    height: 1rem;
+    background-color: lightyellow; 
+    box-shadow: 0 0 10px 10px rgb(255, 255, 255); 
+    opacity: 0.3;
+    transition: all 0.5s ease-out; 
+    z-index: 5;
+}
+
+a {
+    text-decoration: none;
+    transition: transform 0.5s ease, text-shadow 0.5s ease;
+}
+
+@keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff, 0 0 100px #ffffff, 0 0 150px #ffffff;
+    }
+    to {
+      text-shadow: 0 0 30px #fff, 0 0 40px lightyellow, 0 0 50px lightyellow, 0 0 60px lightyellow, 0 0 70px lightyellow, 0 0 80px lightyellow, 0 0 90px lightyellow, 0 0 100px lightyellow;
+    }
+  }
+  .glow-text {
+    color: lightyellow;
+    font-size: clamp(0.75rem, 1vw, 1.5rem);
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+    visibility: hidden;
+    z-index: 10;
+    width: 50vw;
+    height: 3vw;
+    padding: 3%;
+    position: fixed;
+    top: 0%;
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 700;
+  }
+
+.container {
+    display: flex;
+    height: 100vh;
+    z-index: 0;
+    background-color: #000000;
+  }
+  
+.split {
+    height: 110%;
+    width: 50%;
+    position: fixed;
+    overflow-y: scroll;
+    z-index: 1;
+    transition: transform 1s ease-out;
+    margin: 0;
+    flex: 1
+  }
+  
+.left {
+    left: 0;
+    background: linear-gradient(180deg, #000000, lightyellow);
+    transform: translateY(-100%); /* Start above the screen */
+    overflow-y: scroll;
+    width: 50%;
+}
+  
+.right {
+    right: 0;
+    background: linear-gradient(to bottom, #ffffe0, #000000);
+    transform: translateY(100%); /* Start below the screen */
+    overflow-y: scroll;
+    width: 50%;
+  }
+  
+.content {
+    position: relative;
+    transform: translateY(-50%);
+    text-align: center;
+  }
+  
+h1 {
+    margin-top: 20%;
+    transition: color 0.5s;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 1rem;
+    white-space: pre-line;
+    font-family: "Hina Mincho", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(2rem, 4vw, 5rem);
+    line-height: 80%;
+    z-index: 6
+  }
+  
+p {
+    font-size: clamp(1rem, 2vw, 2rem);
+    font-family: "Hina Mincho", serif;
+    line-height: 100%;
+    font-weight: 400;
+    font-style: normal;;
+    text-decoration: none;
+    white-space: pre-wrap;
+    padding-right:3%;
+    padding-left: 3%;
+    padding-bottom: 0%;
+    padding-top: 0%;
+    text-align: left;
+    width: auto;
+    height: auto;
+    z-index: 6;
+    margin-bottom: 30%;
+  }
+
+.gradient-text {
+    background: linear-gradient(180deg, #000000, lightyellow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Hide the text color */
+    -webkit-text-fill-color: transparent; /* Necessary for Safari */
+    z-index: 6;
+    padding-right:3%;
+    padding-left: 3%;
+}
+
+.gradient-text2 {
+    background: linear-gradient(180deg, lightyellow, #000000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Hide the text color */
+    -webkit-text-fill-color: transparent; /* Necessary for Safari */
+    z-index: 6;
+    padding-right:3%;
+    padding-left: 3%;
+}
+
+button {
+    z-index: 10;
+    background-color: #ffffe0;
+}
+
+:root {
+    /* Light theme colors */
+    --background-color-light: lightyellow;
+    --text-color-light: #000000; /* Adjusted for better readability */
+    
+    /* Dark theme colors */
+    --background-color-dark: #000000;
+    --text-color-dark: #FFFFFF; /* Adjusted for better readability */
+}
+
+body.light-mode {
+    --background-color: var(--background-color-light);
+    --text-color: var(--text-color-light);
+}
+
+body.dark-mode {
+    --background-color: var(--background-color-dark);
+    --text-color: var(--text-color-dark);
+}
+
+/* Rest of the CSS remains the same */
