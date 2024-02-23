@@ -1,0 +1,96 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    color: black;
+    overflow-wrap: break-word;
+}
+
+.spotlight-area {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: none;
+    box-shadow: 0 0 10px 10px rgb(255, 255, 255); 
+}
+
+.spotlight-area::before {
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: difference;
+    pointer-events: none;
+}
+
+.spotlight-area p {
+    text-align: justify;
+    max-width: 90%;
+    position: relative;
+    z-index: 2;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    animation: pulse 1s infinite;
+    font-size: clamp(1rem, 2vw, 3rem);
+    font-family: "Hina Mincho", serif;
+    line-height: 100%;
+    font-weight: 400;
+    text-align: justify;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.75;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.75;
+    }
+}
+
+.spotlight-area p span {
+    display: inline-block; /* Allows transform */
+    animation: pulse 1s infinite;
+    animation-delay: calc(var(--animation-order) * 0.2s); /* Stagger animations */
+    overflow-wrap: break-word;
+}
+
+@keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ffffff, 0 0 70px #ffffff, 0 0 80px #ffffff, 0 0 100px #ffffff, 0 0 150px #ffffff;
+    }
+    to {
+      text-shadow: 0 0 30px #fff, 0 0 40px lightyellow, 0 0 50px lightyellow, 0 0 60px lightyellow, 0 0 70px lightyellow, 0 0 80px lightyellow, 0 0 90px lightyellow, 0 0 100px lightyellow;
+    }
+  }
+  .glow-text {
+    color: lightyellow;
+    font-size: clamp(0.75rem, 1vw, 1.5rem);
+    text-align: center;
+    align-items: center;
+    animation: glow 1s ease-in-out infinite alternate;
+    visibility: hidden;
+    z-index: 10;
+    width: 50vw;
+    margin-left: 20%;
+    margin-right:20%;
+    height: 3vw;
+    padding: 3%;
+    position: fixed;
+    top: 0%;
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 700;
+  }
+
+  a {
+    text-decoration: none;
+    transition: transform 0.5s ease, text-shadow 0.5s ease;
+}
